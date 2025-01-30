@@ -1,3 +1,11 @@
+# varialbes.tf 
+
+variable "subscription_id" {
+  description = "Azure subscription id"
+  type = string
+  sensitive = true
+}
+
 variable "resource_region" {
   description = "Azure resource location: Singapore"
   default     = "southeastasia"
