@@ -1,21 +1,6 @@
-# network.tf
+# linux VM network setting
 
-# create resource group
-resource "azurerm_resource_group" "main" {
-  name     = var.resource_group_name
-  location = var.resource_region
-}
-
-# create virtual network
-resource "azurerm_virtual_network" "main" {
-  name          = var.vnet_name
-  address_space = var.vnet_address_space
-  # inherit location, name from resource group
-  location            = azurerm_resource_group.main.location
-  resource_group_name = azurerm_resource_group.main.name
-}
-
-# create vent subnet
+# create linux subnet
 resource "azurerm_subnet" "linux_subnet" {
   name                 = var.linux_subnet_name
   resource_group_name  = azurerm_resource_group.main.name
@@ -23,7 +8,7 @@ resource "azurerm_subnet" "linux_subnet" {
   address_prefixes     = var.linux_subnet
 }
 
-# craete public ip
+# craete linux public ip
 resource "azurerm_public_ip" "linux_vm_public_ip" {
   name                = "${var.linux_vm_name}-public-ip"
   location            = azurerm_resource_group.main.location
@@ -51,7 +36,7 @@ resource "azurerm_network_security_group" "linux_subnet_nsg" {
   }
 }
 
-# create nic
+# create linux nic
 resource "azurerm_network_interface" "linux_vm_nic" {
   name                = "${var.linux_vm_name}-nic"
   location            = azurerm_resource_group.main.location
@@ -65,7 +50,7 @@ resource "azurerm_network_interface" "linux_vm_nic" {
   }
 }
 
-# associate nsg to linux sbuent
+# associate nsg to linux subnet
 resource "azurerm_subnet_network_security_group_association" "linux_subnet_nsg_association" {
   subnet_id                 = azurerm_subnet.linux_subnet.id
   network_security_group_id = azurerm_network_security_group.linux_subnet_nsg.id
