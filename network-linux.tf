@@ -22,9 +22,10 @@ resource "azurerm_network_security_group" "linux_subnet_nsg" {
   location            = azurerm_resource_group.main.location
   resource_group_name = azurerm_resource_group.main.name
 
-  # inbound security rule
+  # all ssh
   security_rule {
     name                       = "allow-ssh"
+    description                = "allow ssh through the port 10499"
     priority                   = 100
     direction                  = "Inbound"
     access                     = "Allow"
@@ -36,14 +37,14 @@ resource "azurerm_network_security_group" "linux_subnet_nsg" {
   }
   # allow inbound 443 for proxy
   security_rule {
-    name = "AllowAnyCustom443Inbound"
-    priority = 110
-    direction = "Inbound"
-    access = "Allow"
-    protocol = "*"
-    source_port_range = "*"
-    destination_port_range = "443"
-    source_address_prefix = "*"
+    name                       = "AllowAnyCustom443Inbound"
+    priority                   = 110
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "443"
+    source_address_prefix      = "*"
     destination_address_prefix = var.linux_subnet[0]
   }
 }
