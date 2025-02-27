@@ -30,8 +30,20 @@ resource "azurerm_network_security_group" "linux_subnet_nsg" {
     access                     = "Allow"
     protocol                   = "Tcp"
     source_port_range          = "*"
-    destination_port_ranges    = ["22", "10499"]
+    destination_port_range     = "10499"
     source_address_prefix      = "*"
+    destination_address_prefix = var.linux_subnet[0]
+  }
+  # allow inbound 443 for proxy
+  security_rule {
+    name = "AllowAnyCustom443Inbound"
+    priority = 110
+    direction = "Inbound"
+    access = "Allow"
+    protocol = "*"
+    source_port_range = "*"
+    destination_port_range = "443"
+    source_address_prefix = "*"
     destination_address_prefix = var.linux_subnet[0]
   }
 }
