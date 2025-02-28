@@ -3,6 +3,8 @@
 # create windows 10 virtual machine
 resource "azurerm_windows_virtual_machine" "windows_vm" {
     name = var.windows_vm_name
+    # for widnows special 15 character limit computer_name
+    computer_name = "SG-Win-VM"
     resource_group_name = azurerm_resource_group.main.name
     location = azurerm_resource_group.main.location
     size = var.windows_vm_size

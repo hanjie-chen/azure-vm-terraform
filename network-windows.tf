@@ -51,7 +51,7 @@ resource "azurerm_network_security_group" "windows_subnet_nsg" {
 
 # create windows vm nic
 resource "azurerm_network_interface" "windows_vm_nic" {
-  name = "${var.linux_vm_name}-nic"
+  name = "${var.windows_vm_name}-nic"
   location = azurerm_resource_group.main.location
   resource_group_name = azurerm_resource_group.main.name
 
