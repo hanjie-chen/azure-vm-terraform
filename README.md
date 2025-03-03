@@ -8,3 +8,4 @@ reference https://learn.microsoft.com/en-us/azure/virtual-machines/linux/quick-c
 
 # furture consider
 1/ use terraform moudle to refactor the existing code
+2/ for vm created, try to build enviroment
