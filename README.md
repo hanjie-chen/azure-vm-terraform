@@ -9,3 +9,4 @@ reference https://learn.microsoft.com/en-us/azure/virtual-machines/linux/quick-c
 # furture consider
 1/ use terraform moudle to refactor the existing code
 2/ for vm created, try to build enviroment
+3/ for terraform.tfstate can't store in the local, if it the file loss, the terraform will not regonize the Azure env.

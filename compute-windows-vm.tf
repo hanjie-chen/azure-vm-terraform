@@ -26,5 +26,7 @@ resource "azurerm_windows_virtual_machine" "windows_vm" {
       sku = "win10-22h2-pro-g2"
       version = "latest"
     }
-  
+  identity {
+    type = "SystemAssigned"
+  }
 }
