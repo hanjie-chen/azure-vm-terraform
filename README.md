@@ -7,7 +7,7 @@ terraform code 用于创建 Azure VM
 reference https://learn.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-terraform?tabs=azure-cli
 
 # furture consider
-1/ use terraform moudle to refactor the existing code
+1/ use terraform module to refactor the existing code
 2/ for vm created, try to build enviroment, for example in windows install vscode, chrome, windows termianl .. etc
 in linux install docker, python (virtual env), terraform ... etc
 3/ for terraform.tfstate can't store in the local, if it the file loss, the terraform will not regonize the Azure env.
