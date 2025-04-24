@@ -6,6 +6,7 @@ variable "subscription_id" {
   sensitive = true
 }
 
+# resource group settings
 variable "resource_region" {
   description = "Azure resource location: Singapore"
   default     = "southeastasia"
@@ -16,13 +17,21 @@ variable "resource_group_name" {
   default     = "Singapore-RG"
 }
 
+# virtual machien setting
+variable "linux_vm_admin_password" {
+  description = "Plain user password for the linux vm"
+  type        = string
+  sensitive   = true
+}
+
+variable "windows_vm_admin_password" {
+  description = "Plain user password for the windows machine"
+  type        = string
+  sensitive   = true
+}
+
 # network setting
 variable "vnet_name" {
   description = "virtual network name"
   default     = "Singapore-Vnet"
-}
-
-variable "vnet_address_space" {
-  description = "virtual network address space"
-  default     = ["10.0.0.0/16"]
 }

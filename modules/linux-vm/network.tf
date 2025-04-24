@@ -3,24 +3,24 @@
 # create linux subnet
 resource "azurerm_subnet" "linux_subnet" {
   name                 = var.linux_subnet_name
-  resource_group_name  = azurerm_resource_group.main.name
-  virtual_network_name = azurerm_virtual_network.main.name
+  resource_group_name  = var.resource_group_name
+  virtual_network_name = var.vnet_name
   address_prefixes     = var.linux_subnet
 }
 
 # craete linux public ip
 resource "azurerm_public_ip" "linux_vm_public_ip" {
   name                = "${var.linux_vm_name}-public-ip"
-  location            = azurerm_resource_group.main.location
-  resource_group_name = azurerm_resource_group.main.name
+  location            = var.resource_region
+  resource_group_name = var.resource_group_name
   allocation_method   = "Static"
 }
 
 # create linux subnet nsg
 resource "azurerm_network_security_group" "linux_subnet_nsg" {
   name                = var.linux_subnet_nsg_name
-  location            = azurerm_resource_group.main.location
-  resource_group_name = azurerm_resource_group.main.name
+  location            = var.resource_region
+  resource_group_name = var.resource_group_name
 
   # all ssh
   security_rule {
@@ -78,8 +78,8 @@ resource "azurerm_network_security_group" "linux_subnet_nsg" {
 # create linux nic
 resource "azurerm_network_interface" "linux_vm_nic" {
   name                = "${var.linux_vm_name}-nic"
-  location            = azurerm_resource_group.main.location
-  resource_group_name = azurerm_resource_group.main.name
+  location            = var.resource_region
+  resource_group_name = var.resource_group_name
 
   ip_configuration {
     name                          = "Internal"

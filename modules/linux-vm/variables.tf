@@ -37,3 +37,19 @@ variable "linux_subnet" {
   description = "linux subnet ip address space"
   default     = ["10.0.1.0/24"]
 }
+
+variable "vnet_name" {
+  description = "virtual network name"
+  type = string
+}
+
+# resource group varilabes
+variable "resource_group_name" {
+  description = "Name of resource group"
+  type = string
+}
+
+variable "resource_region" {
+  description = "Azure resource region"
+  type = string
+}
